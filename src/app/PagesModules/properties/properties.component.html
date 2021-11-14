@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-4">
+        <app-card-actions title="Properies">
+            <form  [formGroup]="FormProperties"  (ngSubmit)="save()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field style="width: 100%; font-size: 16px;">
+                            <mat-label>Title</mat-label>
+                            <input matInput
+                            placeholder="Title"
+                            formControlName="title" required>
+                            <mat-error *ngIf="validateForm('title')">
+                                Campo <strong>obligatorio</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field style="width: 100%; font-size: 16px;">
+                          <mat-label>Address</mat-label>
+                          <input matInput
+                          placeholder="Address"
+                          formControlName="address" required>
+                          <mat-error *ngIf="validateForm('title')">
+                            Campo <strong>obligatorio</strong>
+                          </mat-error>
+                      </mat-form-field>
+                      <mat-form-field style="width: 100%; font-size: 16px;" >
+                        <mat-label>Description</mat-label>
+                        <textarea formControlName="description" maxlength="255"   #description required matInput></textarea>
+                        <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+                        <mat-error *ngIf="validateForm('description')">
+                            Campo <strong>obligatorio</strong>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field style="width: 100%; font-size: 16px;">
+                        <mat-label>Status</mat-label>
+                        <mat-select formControlName="status" required>
+                          <mat-option *ngFor="let s of status" [value]="s.value">
+                            {{s.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="validateForm('status')">
+                          Campo <strong>obligatorio</strong>
+                        </mat-error>
+                      </mat-form-field>
+                        <div class="example-button-row">
+                          <button mat-raised-button color="primary" >Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </app-card-actions>
+    </div>
+    <div class="col-md-8">
+      <app-card-actions>
+
+        <dx-data-grid
+        #dataGridRef
+        id="gridContainer"
+        [columnAutoWidth]="true"
+        [dataSource]="Properties"
+      [showBorders]="true"
+      [showColumnLines]="true"
+      [rowAlternationEnabled]="true"
+      >
+    <dxo-search-panel
+    [visible]="true"
+    [width]=" "
+    placeholder="Buscar..."></dxo-search-panel>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true"
+      >
+    </dxo-pager>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column dataField="id"></dxi-column>
+    <dxi-column dataField="title"></dxi-column>
+    <dxi-column dataField="address"></dxi-column>
+    <dxi-column dataField="description"></dxi-column>
+    <dxi-column dataField="created_at" dataType="datetime"></dxi-column>
+      <dxi-column dataField="updated_at" dataType="datetime"></dxi-column>
+      <dxi-column dataField="disabled_at" dataType="datetime"></dxi-column>
+      <dxi-column dataField="status"></dxi-column>
+    </dx-data-grid>
+  </app-card-actions>
+  </div>
+</div>

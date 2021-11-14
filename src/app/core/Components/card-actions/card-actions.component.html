@@ -1,0 +1,14 @@
+
+     <div class="card">
+        <div class="card-header bg-primary text-white">
+          {{title}}
+          <div class="card-actions">
+            <a class="" data-action="collapse" ><i class="ti-minus"></i></a>
+            <a class="btn-minimize" data-action="expand" ><i class="mdi mdi-arrow-expand"></i></a>
+            <a class="btn-close" data-action="close" ><i class="ti-close"></i></a>
+          </div>
+        </div>
+        <div class="card-body collapse show" style="">
+          <ng-content></ng-content>
+        </div>
+      </div>
