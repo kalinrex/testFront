@@ -1,5 +1,5 @@
 export const Status = [
   {value:"Active", viewValue:"Active"},
-  {value:"Inactive", viewValue: "Inactive"},
+  {value:"Disabled", viewValue: "Disabled"},
   {value:"Done",  viewValue:"Done" }
 ]

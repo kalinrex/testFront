@@ -17,4 +17,10 @@ export class PropertiesService {
   getProperties(): Observable<IProperty[]>{
     return this.http.get<IProperty[]>(`${this.endpoint}/getProperties`).pipe(map(res => res))
   }
+  updateProperty(data: IProperty){
+    return this.http.put(`${this.endpoint}/updateProperty`, data).pipe(map(res => res));
+  }
+  deleteProperty(id: number){
+    return this.http.delete(`${this.endpoint}/deleteProperty/${id}`).pipe(map(res => res))
+  }
 }
