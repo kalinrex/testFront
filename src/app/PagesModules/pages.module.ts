@@ -14,12 +14,20 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { DxDataGridModule } from 'devextreme-angular';
-
+import { ActivityComponent } from './activity/activity.component';
+import { AddActivityComponent } from './activity/components/add-activity/add-activity.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { RescheduleComponent } from './activity/components/reschedule/reschedule.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
     PropertiesComponent,
+    ActivityComponent,
+    AddActivityComponent,
+    RescheduleComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +41,13 @@ import { DxDataGridModule } from 'devextreme-angular';
     MatIconModule,
     MatSelectModule,
     ToastrModule.forRoot(),
-    DxDataGridModule
+    DxDataGridModule,
+    MatDialogModule,
+    NgxSpinnerModule,
+    MatExpansionModule,
   ],
+  entryComponents: [
+    AddActivityComponent
+  ]
 })
 export class PagesModule { }

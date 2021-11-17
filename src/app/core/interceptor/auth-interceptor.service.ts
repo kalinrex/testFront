@@ -24,8 +24,8 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
-        console.log("autInterceptor ->",err)
-        Swal.fire('Error', err.error.errors.Errors, 'warning');
+        let messageError = err.error.errors.Errors ? err.error.errors.Errors : err.error.errors
+        Swal.fire('Notificación', messageError, 'warning');
 
         return throwError(err);
 

@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-md-12">
+    <app-card-actions>
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            mat-raised-button
+            color="primary"
+            style="float: right"
+            (click)="openDialog()"
+          >
+            <i class="fa fa-plus" aria-hidden="true"></i> Add activity
+          </button>
+        </div>
+          <div class="col-md-12">
+            <form [formGroup]="FormFilters">
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Filters
+                    </mat-panel-title>
+                    <mat-panel-description> </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <mat-form-field style="width: 100%; font-size: 16px">
+                        <input
+                          matInput
+                          type="date"
+                          placeholder="Fecha inicial"
+                          formControlName="dateStart"
+                          required
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field style="width: 100%; font-size: 16px">
+                        <input
+                          matInput
+                          type="date"
+                          placeholder="Fecha Final"
+                          formControlName="dateEnd"
+                          required
+                        />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field style="width: 100%; font-size: 16px;">
+                          <mat-label>Status</mat-label>
+                          <mat-select formControlName="status" required>
+                            <mat-option *ngFor="let s of status" [value]="s.value">
+                              {{s.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <button mat-raised-button color="primary" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search</button>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </form>
+          </div>
+        <div class="col-md-12">
+          <button mat-raised-button color="primary" (click)="reschedule()" *ngIf="Options">Reschedule</button>
+          <button mat-raised-button color="warn" (click)="cancelActivity()" *ngIf="Options">Cancel Activity</button>
+          <button mat-raised-button style="background-color: #89bf04; color: white" (click)="endActivity()" *ngIf="Options">End Activity</button>
+          <button mat-raised-button style="background-color: black; color: white" (click)="Options = false" *ngIf="Options">Cancel</button>
+          <!-- <button mat-raised-button color="warn" (click)="deleteProperty()" *ngIf="Edit">Delete</button>
+          <button mat-raised-button (click)="clear()" *ngIf="Edit">Cancel</button> -->
+        </div>
+        <div class="col-md-12">
+          <dx-data-grid
+            #dataGridRef
+            id="gridContainer"
+            [columnAutoWidth]="true"
+            [dataSource]="Activities"
+            [showBorders]="true"
+            [showColumnLines]="true"
+            [rowAlternationEnabled]="true"
+            (onRowClick)="getSelectedData()"
+          >
+            <dxo-search-panel
+              [visible]="true"
+              [width]=""
+              placeholder="Buscar..."
+            ></dxo-search-panel>
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <dxo-pager
+              [showPageSizeSelector]="true"
+              [allowedPageSizes]="[5, 10, 20]"
+              [showInfo]="true"
+            >
+            </dxo-pager>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxi-column dataField="id"></dxi-column>
+            <dxi-column dataField="schedule" dataType="datetime"></dxi-column>
+            <dxi-column dataField="title"></dxi-column>
+            <dxi-column dataField="status"></dxi-column>
+            <dxi-column dataField="created_at" dataType="datetime"></dxi-column>
+            <dxi-column dataField="condition"></dxi-column>
+            <dxi-column dataField="property.id"></dxi-column>
+            <dxi-column dataField="property.title"></dxi-column>
+            <dxi-column dataField="property.address"></dxi-column>
+            <dxi-column dataField="survey.id"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </div>
+    </app-card-actions>
+  </div>
+</div>

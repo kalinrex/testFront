@@ -5,14 +5,15 @@ import { PagesComponent } from './pages.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PropertiesComponent } from './properties/properties.component';
+import { ActivityComponent } from './activity/activity.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: 'activity',
     component: PagesComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: DashboardComponent, data: {parent: 'Test', title: 'Dashboard' } },
+      { path: '', component: ActivityComponent, data: {parent: 'Test', title: 'Activity' } },
       { path: 'properties', component: PropertiesComponent, data: {parent: 'Test', title: 'Properties' } },
     ],
   },

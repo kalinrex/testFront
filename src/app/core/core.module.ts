@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './interceptor/auth-interceptor.service';
 import { HttpErrorsInterceptorService } from './interceptor/http-errors-interceptor.service';
+import { LoadingService } from './interceptor/loading.service';
 
 
 
@@ -24,11 +25,11 @@ import { HttpErrorsInterceptorService } from './interceptor/http-errors-intercep
       useClass: HttpErrorsInterceptorService,
       multi: true
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: LoadingService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingService,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }

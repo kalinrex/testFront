@@ -10,7 +10,7 @@ export class SidebarService {
       icon: 'mdi mdi-gauge',
       submenu:[
         { title: 'Activity', url: '/' },
-        { title: 'Properties', url: '/dashboard/properties' },
+        { title: 'Properties', url: '/activity/properties' },
       ]
     },
   ];

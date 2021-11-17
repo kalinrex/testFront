@@ -5,7 +5,7 @@ import { NopageFoundComponent } from './nopage-found/nopage-found.component';
 import { PagesRoutingModule } from './PagesModules/pages-routing.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/activity', pathMatch: 'full' },
   {path: '**', component: NopageFoundComponent}
 ];
 

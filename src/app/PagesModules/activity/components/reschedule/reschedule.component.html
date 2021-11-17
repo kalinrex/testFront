@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Reschedule activity</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="FormReschedule">
+    <div class="row">
+      <div class="col-md-12 p1">
+        <mat-form-field style="width: 100%; font-size: 16px;">
+          <input matInput type="datetime-local" placeholder="Schedule" formControlName="reschedule" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>cancel</button>
+  <button mat-button (click)="save()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+</mat-dialog-actions>

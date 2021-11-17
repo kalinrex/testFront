@@ -20,14 +20,20 @@ export class HttpErrorsInterceptorService implements HttpInterceptor{
   }
   // tslint:disable-next-line: typedef
   errorHandler(error: HttpErrorResponse){
-    console.log("handlerErrors =>",error)
     if (error.status === 401){
       Swal.fire('Aviso', 'Su sesion a expirado', 'warning');
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
       return throwError(error);
     }
-    Swal.fire('Error', error.error.errors.Errors, 'warning');
+    if(error.status === 0 ){
+      Swal.fire('Aviso', 'No se pudo conectar al servidor', 'warning');
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+      return throwError(error);
+    }
+    let messageError = error.error.errors.Errors ? error.error.errors.Errors : error.error.errors
+    Swal.fire('Notificación', messageError, 'warning');
     return throwError(error);
   }
 }
